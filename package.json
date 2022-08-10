@@ -1,0 +1,79 @@
+{
+  "name": "aurionbot",
+  "version": "1.0.0",
+  "description": "Bot Discord pour le discord mineaurion",
+  "main": "index.js",
+  "lint-staged": {
+    "*.{js,ts,html,md,scss,json}": "npm run format:write",
+    "*{!json}": "npm run lint"
+  },
+  "type": "module",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --loader ts-node/esm/transpile-only src/main.ts",
+    "start:dev": "nodemon --exec node --loader ts-node/esm/transpile-only src/main.ts",
+    "start:prod": "node build/main.js",
+    "test": "npm run lint && npm run format",
+    "format": "prettier \"./src/**/*.{ts,html,md,scss,json}\" -c",
+    "format:write": "prettier \"./src/**/*.{ts,html,md,scss,json}\" --write",
+    "lint": "eslint \"{src,libs}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,libs}/**/*.ts\" --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mineaurion/AurionBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mineaurion/AurionBot/issues"
+  },
+  "homepage": "https://github.com/Mineaurion/AurionBot#readme",
+  "dependencies": {
+    "@discordjs/rest": "^1.0.1",
+    "@discordx/importer": "^1.1.10",
+    "@discordx/koa": "^1.1.1",
+    "@koa/router": "^12.0.0",
+    "@sigfox/koa-prometheus-http-metrics": "^2.1.0",
+    "discord.js": "^14.1.2",
+    "discordx": "^11.0.4",
+    "dotenv": "^16.0.1",
+    "koa": "^2.13.4",
+    "node-fetch": "^3.2.10",
+    "octokit": "^2.0.5",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/flat": "^5.0.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/koa": "^2.13.5",
+    "@types/koa__router": "^8.0.11",
+    "@types/node": "^18.6.3",
+    "@types/node-fetch": "^2.6.2",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "discord-api-types": "^0.37.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^39.3.4",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  }
+}
