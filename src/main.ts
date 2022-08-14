@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import 'dotenv/config';
 import { IntentsBitField, Interaction, Message } from 'discord.js';
-import { container, Lifecycle } from 'tsyringe';
+import { container } from 'tsyringe';
 import { Client, DIService, tsyringeDependencyRegistryEngine } from 'discordx';
 import { dirname, importx } from '@discordx/importer';
 import promHttpMetrics from '@sigfox/koa-prometheus-http-metrics';

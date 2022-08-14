@@ -23,8 +23,7 @@ export class IssueService {
     body: string,
   ): Promise<RestEndpointMethodTypes['issues']['create']['response']> {
     return this.octokit.rest.issues.create({
-      owner: this.github.owner,
-      repo: this.github.repo,
+      ...this.github,
       title,
       body,
     });
