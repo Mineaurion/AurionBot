@@ -4,13 +4,13 @@
     "version": "PTDL_v2",
     "update_url": null
   },
-  "exported_at": "2022-06-27T16:06:08+02:00",
+  "exported_at": "2022-08-14T20:16:58+02:00",
   "name": "AurionBot",
   "author": "yann@mineaurion.com",
-  "description": "AurionBot Egg\r\nThe startup command is unnecessary it will use the cmd defined in dockerfile",
+  "description": null,
   "features": null,
   "docker_images": {
-    "Latest AurionBot": "ghcr.io/mineaurion/AurionBot:latest"
+    "ghcr.io\/mineaurion\/AurionBot:latest": "ghcr.io\/mineaurion\/AurionBot:latest"
   },
   "file_denylist": [],
   "startup": "npm run start:prod",
@@ -29,8 +29,8 @@
   },
   "variables": [
     {
-      "name": "Bot Token discord",
-      "description": "",
+      "name": "BOT_TOKEN",
+      "description": "BOT_TOKEN",
       "env_variable": "BOT_TOKEN",
       "default_value": "",
       "user_viewable": true,
@@ -39,7 +39,7 @@
       "field_type": "text"
     },
     {
-      "name": "Personal Token Github",
+      "name": "GITHUB_TOKEN",
       "description": "",
       "env_variable": "GITHUB_TOKEN",
       "default_value": "",
@@ -49,20 +49,20 @@
       "field_type": "text"
     },
     {
-      "name": "Owner Repo Github",
+      "name": "GITHUB_REPO_OWNER",
       "description": "",
       "env_variable": "GITHUB_REPO_OWNER",
-      "default_value": "",
+      "default_value": "mineaurion",
       "user_viewable": true,
       "user_editable": true,
       "rules": "required|string",
       "field_type": "text"
     },
     {
-      "name": "Repo name Github",
+      "name": "GITHUB_REPO_NAME",
       "description": "",
       "env_variable": "GITHUB_REPO_NAME",
-      "default_value": "",
+      "default_value": "Support",
       "user_viewable": true,
       "user_editable": true,
       "rules": "required|string",
