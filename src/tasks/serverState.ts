@@ -5,7 +5,9 @@ import { ServerService } from '../services/serverService.js';
 import { QueryServer } from '@mineaurion/api';
 import { updateChannelWithEmbed } from './utils.js';
 import { format } from 'util';
+import { Discord } from 'discordx';
 
+@Discord()
 @singleton()
 export class ServerState {
   private CHANNEL_ID = '940932749676642324';
@@ -20,6 +22,7 @@ export class ServerState {
 
   constructor() {
     setInterval(async () => {
+      console.log('Update server state message');
       const serverService = container.resolve(ServerService);
       updateChannelWithEmbed(
         client,

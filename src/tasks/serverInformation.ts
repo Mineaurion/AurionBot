@@ -4,6 +4,7 @@ import { client } from '../main.js';
 import { ServerService } from '../services/serverService.js';
 import { QueryAccess, QueryServer } from '@mineaurion/api';
 import { updateChannelWithEmbed } from './utils.js';
+import { Discord } from 'discordx';
 
 enum Access {
   donator = 'Donateur',
@@ -11,12 +12,14 @@ enum Access {
   paying = 'Payant',
 }
 
+@Discord()
 @singleton()
 export class ServerInformation {
   private CHANNEL_ID = '959838565842444308';
 
   constructor() {
     setInterval(async () => {
+      console.log('Update server information message');
       const serverService = container.resolve(ServerService);
       updateChannelWithEmbed(
         client,
