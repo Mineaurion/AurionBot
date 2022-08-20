@@ -16,7 +16,7 @@ export class Metrics {
   metric(context: Context): void {
     const register = new Registry();
     register.setDefaultLabels({
-      app: 'aurionstaff',
+      app: 'aurionbot',
     });
     collectDefaultMetrics({ register });
 
