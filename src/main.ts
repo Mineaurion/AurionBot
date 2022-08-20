@@ -53,7 +53,8 @@ client.on('messageCreate', (message: Message) => {
 
 const run = async (): Promise<void> => {
   await importx(
-    dirname(import.meta.url) + '/{api,events,commands}/**/*.{ts,js}',
+    dirname(import.meta.url) +
+      '/{api,events,commands,tasks,services}/**/*.{ts,js}',
   );
 
   // let's start the bot
