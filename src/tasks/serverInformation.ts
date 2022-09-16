@@ -18,15 +18,17 @@ export class ServerInformation {
   private CHANNEL_ID = '959838565842444308';
 
   constructor() {
-    setInterval(async () => {
-      console.log('Update server information message');
-      const serverService = container.resolve(ServerService);
-      updateChannelWithEmbed(
-        client,
-        this.CHANNEL_ID,
-        this.createEmbed(await serverService.getQueryServers()),
-      );
-    }, 60000 * 3);
+    if (process.env.TASKS === 'true') {
+      setInterval(async () => {
+        console.log('Update server information message');
+        const serverService = container.resolve(ServerService);
+        updateChannelWithEmbed(
+          client,
+          this.CHANNEL_ID,
+          this.createEmbed(await serverService.getQueryServers()),
+        );
+      }, 60000 * 3);
+    }
   }
 
   private createEmbed(queryServers: QueryServer[]): EmbedBuilder {

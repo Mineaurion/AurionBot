@@ -21,15 +21,17 @@ export class ServerState {
   private pluralTotalPlayer = '%s joueurs connectés.\n';
 
   constructor() {
-    setInterval(async () => {
-      console.log('Update server state message');
-      const serverService = container.resolve(ServerService);
-      updateChannelWithEmbed(
-        client,
-        this.CHANNEL_ID,
-        this.createEmbed(await serverService.getQueryServers()),
-      );
-    }, 60000 * 3);
+    if (process.env.TASKS === 'true') {
+      setInterval(async () => {
+        console.log('Update server state message');
+        const serverService = container.resolve(ServerService);
+        updateChannelWithEmbed(
+          client,
+          this.CHANNEL_ID,
+          this.createEmbed(await serverService.getQueryServers()),
+        );
+      }, 60000 * 3);
+    }
   }
 
   public createEmbed(
