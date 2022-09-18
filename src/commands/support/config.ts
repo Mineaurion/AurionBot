@@ -57,6 +57,7 @@ export const supportEmbed: Record<
     {
       color: resolveColor('Purple'),
       title: 'Comment claim votre base ?',
+      image: 'https://forum.mineaurion.com/assets/uploads/files/1556449629103-e507e5b7-9936-43e0-963c-0b68138b8700-image.png',
       fields: [
         {
           name: "La base d'un claim",
