@@ -6,19 +6,36 @@ import { Client, DIService, tsyringeDependencyRegistryEngine } from 'discordx';
 import { dirname, importx } from '@discordx/importer';
 import promHttpMetrics from '@sigfox/koa-prometheus-http-metrics';
 import { Koa } from '@discordx/koa';
-import pino from 'pino';
+import { pino, P } from 'pino';
+
+const targets: P.TransportTargetOptions[] = [
+  {
+    target: 'pino-loki',
+    options: {
+      batching: true,
+      interval: 5,
+      labels: { app: process.env.npm_package_name },
+      host: process.env.LOKI_HOST,
+    },
+    level: 'info',
+  },
+  {
+    target: 'pino-pretty',
+    options: {
+      colorize: true,
+    },
+    level: 'debug',
+  },
+];
+
+if (process.env.NODE_ENV !== 'production') {
+  delete targets[0];
+}
 
 export const logger = pino({
   name: process.env.npm_package_name,
-  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-  timestamp: () => `,"time":"${new Date(Date.now()).toISOString()}"`,
-  formatters: {
-    level: (label) => {
-      return {
-        level: label,
-      };
-    },
-  },
+  level: 'debug',
+  transport: { targets },
 });
 
 export const client = new Client({

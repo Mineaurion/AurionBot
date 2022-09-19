@@ -4,13 +4,13 @@
     "version": "PTDL_v2",
     "update_url": null
   },
-  "exported_at": "2022-08-14T20:16:58+02:00",
+  "exported_at": "2022-09-19T19:34:28+02:00",
   "name": "AurionBot",
   "author": "yann@mineaurion.com",
   "description": null,
   "features": null,
   "docker_images": {
-    "ghcr.io\/mineaurion\/AurionBot:latest": "ghcr.io\/mineaurion\/AurionBot:latest"
+    "ghcr.io/mineaurion/AurionBot:latest": "ghcr.io/mineaurion/AurionBot:latest"
   },
   "file_denylist": [],
   "startup": "npm run start:prod",
@@ -63,6 +63,36 @@
       "description": "",
       "env_variable": "GITHUB_REPO_NAME",
       "default_value": "Support",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string",
+      "field_type": "text"
+    },
+    {
+      "name": "Url de l'api",
+      "description": "Url de l'api de mineaurion",
+      "env_variable": "API_SERVER_DOMAIN",
+      "default_value": "",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|url",
+      "field_type": "text"
+    },
+    {
+      "name": "Token de l'api mineaurion",
+      "description": "",
+      "env_variable": "API_SERVER_TOKEN",
+      "default_value": "",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string",
+      "field_type": "text"
+    },
+    {
+      "name": "LOKI_HOST",
+      "description": "LOKI_HOST",
+      "env_variable": "LOKI_HOST",
+      "default_value": "",
       "user_viewable": true,
       "user_editable": true,
       "rules": "required|string",
