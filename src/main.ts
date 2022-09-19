@@ -6,6 +6,20 @@ import { Client, DIService, tsyringeDependencyRegistryEngine } from 'discordx';
 import { dirname, importx } from '@discordx/importer';
 import promHttpMetrics from '@sigfox/koa-prometheus-http-metrics';
 import { Koa } from '@discordx/koa';
+import pino from 'pino';
+
+export const logger = pino({
+  name: process.env.npm_package_name,
+  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+  timestamp: () => `,"time":"${new Date(Date.now()).toISOString()}"`,
+  formatters: {
+    level: (label) => {
+      return {
+        level: label,
+      };
+    },
+  },
+});
 
 export const client = new Client({
   simpleCommand: {
@@ -39,8 +53,10 @@ client.once('ready', async () => {
   //  await client.clearApplicationCommands(
   //    ...client.guilds.cache.map((g) => g.id)
   //  );
-
-  console.log('Bot started');
+  logger.info(
+    `Scheduled tasks is ${process.env.TASK_DISABLE === 'true' ? 'OFF' : 'ON'}`,
+  );
+  logger.info('Bot started');
 });
 
 client.on('interactionCreate', (interaction: Interaction) => {
@@ -73,7 +89,7 @@ const run = async (): Promise<void> => {
 
   const port = process.env.SERVER_PORT ?? 3000;
   server.listen(port, () => {
-    console.log(`discord api server started on ${port}`);
+    logger.info(`discord api server started on ${port}`);
   });
 
   // ************* rest api section: end **********

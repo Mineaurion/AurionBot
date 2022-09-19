@@ -58,7 +58,9 @@ export class Issue {
 
     const defaultBody = `# ${channelName}\n\n#### Owner: ${
       interaction.user.username
-    }\n---\n ## Description:\n---\n ${body || 'description with quality\n---\n'}`;
+    }\n---\n ## Description:\n---\n ${
+      body || 'description with quality\n---\n'
+    }`;
 
     modal.addComponents(
       new ActionRowBuilder<TextInputBuilder>().addComponents(

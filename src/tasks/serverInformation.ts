@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 import { container, singleton } from 'tsyringe';
-import { client } from '../main.js';
+import { client, logger } from '../main.js';
 import { ServerService } from '../services/serverService.js';
 import { QueryAccess, QueryServer } from '@mineaurion/api';
 import { updateChannelWithEmbed } from './utils.js';
@@ -15,12 +15,15 @@ enum Access {
 @Discord()
 @singleton()
 export class ServerInformation {
-  private CHANNEL_ID = '959838565842444308';
+  private CHANNEL_ID =
+    process.env.NODE_ENV === 'production'
+      ? '959838565842444308'
+      : '995323049467457687';
 
   constructor() {
-    if (process.env.TASKS === 'true') {
+    if (process.env.TASKS_DISABLE !== 'true') {
       setInterval(async () => {
-        console.log('Update server information message');
+        logger.info('Update server information message');
         const serverService = container.resolve(ServerService);
         updateChannelWithEmbed(
           client,
@@ -68,8 +71,8 @@ export class ServerInformation {
         embed.addFields({ name: infoServer, value: details });
       });
     } catch (error) {
-      console.error('Error when looking for queryServer');
-      console.error(error);
+      logger.error('Error when looking for queryServer');
+      logger.error(error);
     }
     return embed;
   }

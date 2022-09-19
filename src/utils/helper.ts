@@ -1,4 +1,5 @@
 import fetch, { RequestInfo, RequestInit } from 'node-fetch';
+import { logger } from '../main.js';
 
 export const http = async <T>(
   request: RequestInfo,
@@ -6,7 +7,7 @@ export const http = async <T>(
 ): Promise<T> => {
   const response = await fetch(request, init);
   if (!response.ok) {
-    console.error('Erreur fetching', request);
+    logger.error('Erreur fetching', request);
     throw response.statusText;
     // throw new Error('Http Error, response is not ok');
   }

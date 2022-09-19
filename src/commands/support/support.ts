@@ -9,6 +9,7 @@ import {
   JSONEncodable,
 } from 'discord.js';
 import { Discord, Slash, SlashOption } from 'discordx';
+import { logger } from '../../main.js';
 import { isSecondChoice, supportEmbed } from './config.js';
 
 @Discord()

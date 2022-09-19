@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 import { container, singleton } from 'tsyringe';
-import { client } from '../main.js';
+import { client, logger } from '../main.js';
 import { ServerService } from '../services/serverService.js';
 import { QueryServer } from '@mineaurion/api';
 import { updateChannelWithEmbed } from './utils.js';
@@ -10,7 +10,10 @@ import { Discord } from 'discordx';
 @Discord()
 @singleton()
 export class ServerState {
-  private CHANNEL_ID = '940932749676642324';
+  private CHANNEL_ID =
+    process.env.NODE_ENV === 'production'
+      ? '940932749676642324'
+      : '995323098192683019';
 
   private noPlayer = 'Aucun joueur connecté.\n';
 
@@ -21,9 +24,9 @@ export class ServerState {
   private pluralTotalPlayer = '%s joueurs connectés.\n';
 
   constructor() {
-    if (process.env.TASKS === 'true') {
+    if (process.env.TASKS_DISABLE !== 'true') {
       setInterval(async () => {
-        console.log('Update server state message');
+        logger.info('Update server state message');
         const serverService = container.resolve(ServerService);
         updateChannelWithEmbed(
           client,
