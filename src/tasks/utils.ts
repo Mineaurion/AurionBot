@@ -15,7 +15,7 @@ export const updateChannelWithEmbed = async (
     if (message) {
       message.edit(payload);
     } else {
-      channel.send(payload).then((message) => message.pin());
+      (await channel.send(payload)).pin();
     }
   } else {
     throw new Error("This channel is not text based or doesn't exist");

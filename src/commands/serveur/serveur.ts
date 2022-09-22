@@ -12,7 +12,7 @@ export class Serveur {
     private serverService: ServerService,
   ) {}
 
-  @Slash('serveur')
+  @Slash({ name: 'serveur', description: "L'etat des serveurs" })
   async createIssueModal(interaction: CommandInteraction): Promise<void> {
     interaction.reply({
       content: '',

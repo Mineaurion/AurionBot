@@ -17,12 +17,15 @@ import { IssueService } from './issueService.js';
 export class Issue {
   constructor(private issueService: IssueService) {}
 
-  @Slash('issue')
+  @Slash({ name: 'issue', description: 'Creer un ticket github' })
   async createIssueModal(interaction: CommandInteraction): Promise<void> {
     await this.showModal(interaction);
   }
 
-  @ContextMenu(ApplicationCommandType.Message, 'Créer un ticket')
+  @ContextMenu({
+    type: ApplicationCommandType.Message,
+    name: 'Créer un ticket',
+  })
   async contextHandler(
     interaction: MessageContextMenuCommandInteraction,
   ): Promise<void> {
@@ -33,7 +36,7 @@ export class Issue {
     );
   }
 
-  @ModalComponent('modal-ticket')
+  @ModalComponent({ id: 'modal-ticket' })
   async handleModal(interaction: ModalSubmitInteraction): Promise<void> {
     const issue = await this.issueService.createIssue(
       interaction.fields.getTextInputValue('title'),

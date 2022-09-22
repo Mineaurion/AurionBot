@@ -71,7 +71,7 @@ client.once('ready', async () => {
   //    ...client.guilds.cache.map((g) => g.id)
   //  );
   logger.info(
-    `Scheduled tasks is ${process.env.TASK_DISABLE === 'true' ? 'OFF' : 'ON'}`,
+    `Scheduled tasks is ${process.env.TASKS_DISABLE === 'true' ? 'OFF' : 'ON'}`,
   );
   logger.info('Bot started');
 });

@@ -9,22 +9,25 @@ import {
   JSONEncodable,
 } from 'discord.js';
 import { Discord, Slash, SlashOption } from 'discordx';
-import { logger } from '../../main.js';
 import { isSecondChoice, supportEmbed } from './config.js';
 
 @Discord()
 export class Support {
-  @Slash('support')
+  @Slash({ name: 'support', description: 'Support Mineaurion' })
   async support(
-    @SlashOption('choix-1', {
+    @SlashOption({
+      name: 'choix-1',
       type: ApplicationCommandOptionType.String,
       autocomplete: true,
+      description: 'Choix section 1',
     })
     firstChoice: string,
-    @SlashOption('choix-2', {
+    @SlashOption({
+      name: 'choix-2',
       type: ApplicationCommandOptionType.String,
       autocomplete: true,
       required: false,
+      description: 'Choix section 2',
     })
     secondChoice: string | undefined,
     interaction: CommandInteraction,
