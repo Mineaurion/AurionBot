@@ -146,5 +146,36 @@ export const supportEmbed: Record<
         ],
       },
     ],
+    'Version du launcher': [
+      {
+        color: resolveColor('Blue'),
+        title: 'Installer la bonne version du launcher',
+        url: 'https://forum.mineaurion.com/topic/2046',
+        image:
+          'https://forum.mineaurion.com/assets/uploads/files/1498326984844-a675db59-a551-4218-a4da-acd5e0d9ce3c-image-resized.png',
+        fields: [
+          {
+            name: 'Mise à jour du launcher',
+            value:
+              'Si vous n\'arrivez pas à mettre à jour la liste des serveurs vous avez surement une ancienne version de celle-ci.',
+          },
+          {
+            name: 'Mettre à jour le launcher',
+            value:
+              'Rendez-vous ici afin de télécharger la dernière version du launcher : https://github.com/Mineaurion/Launcher/releases/',
+          },
+          {
+            name: 'La mise à jour ne fonctionne pas ?',
+            value:
+              'Un problème connu concernant la mise à jour du launcher impossible est facilement résolvable. Allez dans vos documents et supprimez le dossier **Mineaurion Launcher**.',
+          },
+          {
+            name: 'Enjoy',
+            value:
+              'Normalement tout est solutionné ! Bon jeu à vous ! ',
+          },
+        ],
+      },
+    ],
   },
 };
