@@ -157,7 +157,7 @@ export const supportEmbed: Record<
           {
             name: 'Mise à jour du launcher',
             value:
-              'Si vous n\'arrivez pas à mettre à jour la liste des serveurs vous avez surement une ancienne version de celle-ci.',
+              "Si vous n'arrivez pas à mettre à jour la liste des serveurs vous avez surement une ancienne version de celle-ci.",
           },
           {
             name: 'Mettre à jour le launcher',
@@ -171,8 +171,7 @@ export const supportEmbed: Record<
           },
           {
             name: 'Enjoy',
-            value:
-              'Normalement tout est solutionné ! Bon jeu à vous ! ',
+            value: 'Normalement tout est solutionné ! Bon jeu à vous ! ',
           },
         ],
       },
