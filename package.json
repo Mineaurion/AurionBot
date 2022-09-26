@@ -42,7 +42,7 @@
     "@mineaurion/api": "^0.7.3",
     "@sigfox/koa-prometheus-http-metrics": "^2.1.0",
     "discord.js": "^14.4.0",
-    "discordx": "^11.3.0",
+    "discordx": "^11.4.0",
     "dotenv": "^16.0.2",
     "koa": "^2.13.4",
     "node-fetch": "^3.2.10",
