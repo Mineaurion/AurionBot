@@ -177,4 +177,24 @@ export const supportEmbed: Record<
       },
     ],
   },
+  unkownhost: [
+    {
+      color: resolveColor('Purple'),
+      title: 'Problème "Unknow Host"',
+      image:
+        'https://playit.gg/support/post-img/minecraft-unknown-host.png',
+      fields: [
+        {
+          name: "Solution N°1 flush DNS",
+          value:
+            "Lancer un invité de commande et taper la commande **ipconfig /flushdns** ( assurez vous d'avoir l'accès administrateur )",
+        },
+        {
+          name: 'Solution N°2 Changer ses DNS',
+          value:
+            "Le but est de changer ses DNS en passant par ceux de google. Pour ce faire, suivez ce tutoriel : **https://bit.ly/3NJjKVZ**",
+        },
+      ],
+    },
+  ],
 };
