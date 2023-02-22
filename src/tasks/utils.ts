@@ -6,7 +6,7 @@ export const updateChannelWithEmbed = async (
   embed: EmbedBuilder | EmbedBuilder[],
 ): Promise<void> => {
   const channel = client.channels.cache.get(channelId);
-  if (channel && channel.isTextBased()) {
+  if (channel && channel.isTextBased() && !channel.isVoiceBased()) {
     const message = (await channel.messages.fetchPinned()).first();
     const payload = {
       content: ' ',
