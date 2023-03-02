@@ -205,17 +205,17 @@ export const supportEmbed: Record<
         {
           name: 'Consulter le site internet',
           value:
-            "Consultez le site https://minecraft-api.com/mojang/ et regardez si l'authentification est bien en ligne",
+            'Consultez le site https://minecraft-api.com/mojang/ et regardez si l authentification est bien en ligne',
         },
         {
           name: 'Le service est en ligne ?',
           value:
-            "Si le service est en ligne, redemarrer votre jeu cela devrais résoudre le soucis !",
+            'Si le service est en ligne, redemarrer votre jeu cela devrais résoudre le soucis !',
         },
         {
           name: 'Le service est hors ligne ?',
           value:
-            "Malheureusement vous allez devoir attendre que le service redevienne opérationnel. Attendez quelques instants et essayez de vous reconnecter !",
+            'Malheureusement vous allez devoir attendre que le service redevienne opérationnel. Attendez quelques instants et essayez de vous reconnecter !',
         },
       ],
     },
