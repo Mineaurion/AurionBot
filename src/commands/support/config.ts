@@ -196,4 +196,28 @@ export const supportEmbed: Record<
       ],
     },
   ],
+  maintenanceserver: [
+    {
+      color: resolveColor('Purple'),
+      title: 'Problème "Failed to log in:  The authentification servers are currently  down for maintenance"',
+      image: 'https://user-images.githubusercontent.com/7802164/202239166-1e44cc0b-3dfb-45cc-b85e-f2fadc964d78.png',
+      fields: [
+        {
+          name: 'Consulter le site internet',
+          value:
+            "Consultez le site https://minecraft-api.com/mojang/ et regardez si l'authentification est bien en ligne",
+        },
+        {
+          name: 'Le service est en ligne ?',
+          value:
+            "Si le service est en ligne, redemarrer votre jeu cela devrais résoudre le soucis !",
+        },
+        {
+          name: 'Le service est hors ligne ?',
+          value:
+            "Malheureusement vous allez devoir attendre que le service redevienne opérationnel. Attendez quelques instants et essayez de vous reconnecter !",
+        },
+      ],
+    },
+  ],
 };
