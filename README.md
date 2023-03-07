@@ -45,3 +45,8 @@ npm run start
 ## Pterodactyl
 
 You can use this bot in pterodactyl, you need to install the file egg-aurion-bot.json in order to do that. And take inspiration on the github workflow in order to update the docker container.
+
+
+## Wiki
+
+Wiki is [here](https://github.com/Mineaurion/AurionBot/wiki)
