@@ -199,8 +199,10 @@ export const supportEmbed: Record<
   maintenanceserver: [
     {
       color: resolveColor('Purple'),
-      title: 'Problème Failed to log in:  The authentification servers are currently  down for maintenance',
-      image: 'https://user-images.githubusercontent.com/7802164/202239166-1e44cc0b-3dfb-45cc-b85e-f2fadc964d78.png',
+      title:
+        'Problème Failed to log in:  The authentification servers are currently  down for maintenance',
+      image:
+        'https://user-images.githubusercontent.com/7802164/202239166-1e44cc0b-3dfb-45cc-b85e-f2fadc964d78.png',
       fields: [
         {
           name: 'Consulter le site internet',
