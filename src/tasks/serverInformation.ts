@@ -12,6 +12,12 @@ enum Access {
   paying = 'Payant',
 }
 
+enum ServerTypeLogo {
+  overworld = 'https://imgur.com/E8XrmcT.png',
+  skyblock = 'https://i.imgur.com/SEKeq2O.png',
+  default = 'https://imgur.com/Fww10bp.png',
+}
+
 @Discord()
 @singleton()
 export class ServerInformation {
@@ -19,6 +25,8 @@ export class ServerInformation {
     process.env.NODE_ENV === 'production'
       ? '959838565842444308'
       : '995323049467457687';
+
+  private noPlayer = 'Aucun joueur connecté.\n';
 
   constructor() {
     if (process.env.TASKS_DISABLE !== 'true') {
@@ -30,50 +38,97 @@ export class ServerInformation {
           this.CHANNEL_ID,
           this.createEmbed(await serverService.getQueryServers()),
         );
-      }, 60000 * 3);
+      }, 600 * 3);
     }
   }
 
-  private createEmbed(queryServers: QueryServer[]): EmbedBuilder {
-    const embed = new EmbedBuilder()
-      .setTitle('📈 Versions des serveurs')
-      .setColor(3447003)
-      .setFooter({
-        text: 'Mineaurion',
-        iconURL:
-          'https://forum.mineaurion.com/assets/uploads/system/touchicon-36.png',
-      });
+  private createEmbed(queryServers: QueryServer[]): EmbedBuilder[] {
+    const embeds = [] as EmbedBuilder[];
     try {
       queryServers.forEach((server) => {
-        let infoServer = `${server.name} `;
-        let details = '';
         const tags: string[] = [];
-
+        let infoServer = '';
         (Object.keys(server.access) as (keyof QueryAccess)[]).forEach((key) => {
           if (key in Access && server.access[key]) {
             tags.push(Access[key]);
           }
         });
+
         if (tags.length > 0) {
-          infoServer += `\`${tags.join(' - ')}\``;
+          infoServer += '- ';
+          tags.forEach((tag) => (infoServer += `\`${tag}\` `));
         }
-        if (tags.includes(Access.paying)) {
-          details +=
-            '**Serveur en accès payant, visitez la boutique [ici](https://shop.mineaurion.com)**\n';
+
+        const embed = new EmbedBuilder()
+          .setTitle(`${server.name} ${infoServer}`)
+          .setColor(server.status ? 'Green' : 'Red');
+        let players = this.noPlayer;
+
+        if (server.players.length > 0) {
+          players = this.getPlayersName(server.players);
         }
-        details += `Adresse : \`${server.dns}\`\n`;
-        details += `Version Minecraft : ${server.version.minecraft}\n`;
-        details += `Version Serveur : ${server.version.modpack}\n`;
-        details += `Type : ${server.type}\n`;
-        if (server.schedule.reboot && server.schedule.reboot.length > 0) {
-          details += `Heures de reboot : ${server.schedule.reboot.join(' - ')}`;
+
+        embed.addFields(
+          {
+            name: 'Version',
+            value: ' ',
+            inline: true,
+          },
+          {
+            name: `Minecraft \`${server.version.minecraft}\``,
+            value: ' ',
+            inline: true,
+          },
+          {
+            name: `Modpack \`${server.version.modpack}\``,
+            value: ' ',
+            inline: true,
+          },
+          {
+            name: `Joueur(s) connecté(s): ${server.onlinePlayers}/${server.maxPlayers}`,
+            value: players,
+            inline: true,
+          },
+        );
+        if (server.schedule.nextReboot) {
+          const nextSchedule: string = server.schedule.nextReboot.toString();
+          embed.addFields({
+            name: 'Redémarrage',
+            value: `<t:${nextSchedule}:R>`,
+            inline: true,
+          });
         }
-        embed.addFields({ name: infoServer, value: details });
+        embed.setThumbnail(
+          this.isServerTypeLogo(server.type)
+            ? ServerTypeLogo[server.type]
+            : ServerTypeLogo.default,
+        );
+        embeds.push(embed);
       });
     } catch (error) {
       logger.error('Error when looking for queryServer');
       logger.error(error);
     }
-    return embed;
+    return embeds;
+  }
+  private getPlayersName(players: string[]): string {
+    const playersName: string[] = [''];
+    let playersNameIndex = 0;
+    players.forEach((player) => {
+      const nextLenght =
+        playersName[playersNameIndex].length + `\`${player}\``.length;
+      if (nextLenght >= 32) {
+        playersNameIndex += 1;
+        playersName[playersNameIndex] = '';
+      }
+      playersName[playersNameIndex] += `\`${player}\` `;
+    });
+    return playersName.join('\n');
+  }
+
+  private isServerTypeLogo(
+    maybeServerType: string,
+  ): maybeServerType is keyof typeof ServerTypeLogo {
+    return maybeServerType in ServerTypeLogo;
   }
 }
