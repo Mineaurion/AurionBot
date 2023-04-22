@@ -38,7 +38,7 @@ export class ServerInformation {
           this.CHANNEL_ID,
           this.createEmbed(await serverService.getQueryServers()),
         );
-      }, 600 * 3);
+      }, 60000 * 3);
     }
   }
 
