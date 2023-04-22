@@ -149,7 +149,7 @@ export const supportEmbed: Record<
     'Version du launcher': [
       {
         color: resolveColor('Blue'),
-        title: 'Installer la bonne version du launcher',
+        title: 'Installer la bonne version du launcher - V.4.10',
         url: 'https://forum.mineaurion.com/topic/2046',
         image:
           'https://forum.mineaurion.com/assets/uploads/files/1498326984844-a675db59-a551-4218-a4da-acd5e0d9ce3c-image-resized.png',
