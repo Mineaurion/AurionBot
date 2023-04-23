@@ -26,7 +26,10 @@ export class ServerInformation {
       ? '959838565842444308'
       : '995323049467457687';
 
-  private noPlayer = 'Aucun joueur connecté.\n';
+  private interval =
+    process.env.NODE_ENV === 'production' ? 60000 * 3 : 600 * 3;
+
+  private noPlayer = 'Aucun joueur connecté.';
 
   constructor() {
     if (process.env.TASKS_DISABLE !== 'true') {
@@ -38,7 +41,7 @@ export class ServerInformation {
           this.CHANNEL_ID,
           this.createEmbed(await serverService.getQueryServers()),
         );
-      }, 60000 * 3);
+      }, this.interval);
     }
   }
 
@@ -66,6 +69,14 @@ export class ServerInformation {
 
         if (server.players.length > 0) {
           players = this.getPlayersName(server.players);
+        }
+
+        if (tags.includes(Access.paying)) {
+          embed.addFields({
+            name: ' ',
+            value:
+              '**Serveur en accès payant, visitez la boutique [ici](https://shop.mineaurion.com)**\n',
+          });
         }
 
         embed.addFields(
@@ -115,9 +126,9 @@ export class ServerInformation {
     const playersName: string[] = [''];
     let playersNameIndex = 0;
     players.forEach((player) => {
-      const nextLenght =
+      const nextLength =
         playersName[playersNameIndex].length + `\`${player}\``.length;
-      if (nextLenght >= 32) {
+      if (nextLength >= 32) {
         playersNameIndex += 1;
         playersName[playersNameIndex] = '';
       }
