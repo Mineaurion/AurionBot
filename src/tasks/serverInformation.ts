@@ -71,15 +71,17 @@ export class ServerInformation {
           players = this.getPlayersName(server.players);
         }
 
+        let description = `**Adresse** : \`${server.dns}\``;
         if (tags.includes(Access.paying)) {
-          embed.addFields({
-            name: ' ',
-            value:
-              '**Serveur en accès payant, visitez la boutique [ici](https://shop.mineaurion.com)**\n',
-          });
+          description +=
+            '\n**Serveur en accès payant, visitez la boutique [ici](https://shop.mineaurion.com)**\n';
         }
 
         embed.addFields(
+          {
+            name: ' ',
+            value: description,
+          },
           {
             name: 'Version',
             value: ' ',
