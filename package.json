@@ -51,6 +51,7 @@
     "pino-loki": "^2.0.4",
     "pino-pretty": "^10.0.0",
     "reflect-metadata": "^0.1.13",
+    "rss-feed-emitter": "^3.2.3",
     "tsyringe": "^4.7.0"
   },
   "devDependencies": {
