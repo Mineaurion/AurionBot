@@ -19,7 +19,7 @@ export class Rss {
     const feeder = new FeedEmitter({ skipFirstLoad: true });
     feeder.add({
       url: this.urlRss,
-      refresh: 5 * 60,
+      refresh: 5 * 60000,
     });
     feeder.on('new-item', (item: Record<string, string>) =>
       this.sendMessage(item),
