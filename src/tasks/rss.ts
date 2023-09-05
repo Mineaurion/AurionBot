@@ -2,6 +2,7 @@ import { singleton } from 'tsyringe';
 import { client, logger } from '../main.js';
 import { Discord } from 'discordx';
 import FeedEmitter from 'rss-feed-emitter';
+import { ChannelType } from 'discord.js';
 
 @Discord()
 @singleton()
@@ -32,7 +33,13 @@ export class Rss {
       const cleanLink = item.link.substring(0, item.link.lastIndexOf('/'));
       logger.debug('Publishing new topic on forum');
       if (channel && channel.isTextBased() && !channel.isVoiceBased()) {
-        await channel.send(`📢 ${cleanLink}`);
+        const message = await channel.send(`📢 ${cleanLink}`);
+        if (
+          channel.type === ChannelType.GuildAnnouncement &&
+          message.crosspostable
+        ) {
+          await message.crosspost();
+        }
       }
     }
   }
